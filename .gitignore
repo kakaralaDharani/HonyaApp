@@ -1,0 +1,78 @@
+# Maven build output
+target/
+*.jar
+*.war
+*.ear
+dependency-reduced-pom.xml
+release.properties
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+pom.xml.backup
+pom.xml.releaseBackup
+pom.xml.next
+pom.xml.backup
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+.factorypath
+
+# IntelliJ IDEA project files
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+target/
+*.class
+
+# VS Code project files
+.vscode/
+
+# Node.js modules
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.log.*
+
+# Tests and reports
+test-output/
+surefire-reports/
+failsafe-reports/
+
+# Build cache
+.mvn/
+target/
+dependency/
+build/
+
+# Java-specific
+*.class
+*.jar
+*.war
+*.ear
+*.jpi
+hs_err_pid*
+replay_pid*
+
+# IDE-specific
+*.swp
+*.swo
+
+# Parent-Child POM related
+**/target/
+**/.mvn/
+**/dependency/
+**/build/
+**/node_modules/

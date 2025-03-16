@@ -1,0 +1,58 @@
+server:
+  port: ${SERVER_PORT:8765}
+
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  zipkin:
+    base-url: http://${ZIPKIN_HOST:localhost:9411}
+    enabled: false
+    service:
+      name: honya-api-gateway-service
+    message-timeout: 10
+  sleuth:
+    sampler:
+      probability: 1.0
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+zuul:
+  sensitiveHeaders:
+  host:
+    socket-timeout-millis: 30000
+    connect-timeout-millis: 30000
+  prefix: /api
+  routes:
+    billing:
+      path: /billing/**
+      serviceId: http://localhost:5001/
+    catalog:
+      path: /catalog/**
+      serviceId: http://localhost:6001/
+    account:
+      path: /account/**
+      serviceId: http://localhost:4001/
+    order:
+      path: /order/**
+      serviceId: http://localhost:7001/
+    payment:
+      path: /payment/**
+      serviceId: http://localhost:8001/
+  ribbon:
+    eager-load:
+      enabled: true
+  ribbon-isolation-strategy: THREAD
+
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 40000
