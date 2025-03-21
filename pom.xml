@@ -21,6 +21,7 @@
         <module>honya-commons</module>
         <module>honya-feign</module>
         <module>honya-api-gateway-service</module>
+        <module>honya-eureka-discovery-service</module>
         <module>honya-account-service</module>
         <module>honya-billing-service</module>
         <module>honya-catalog-service</module>

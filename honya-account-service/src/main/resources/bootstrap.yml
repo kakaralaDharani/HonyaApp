@@ -25,7 +25,7 @@ eureka:
     serviceUrl:
       defaultZone: http://${EUREKA_HOST:localhost:8761}/eureka/
     registerWithEureka: true
-    enabled: false #eureka discovery is enabled in this profile
+    enabled: true #eureka discovery is enabled in this profile
   instance:
     prefer-ip-address: false
 

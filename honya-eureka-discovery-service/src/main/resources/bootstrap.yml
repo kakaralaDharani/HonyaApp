@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: honya-eureka-discovery-service
+
+management:
+  metrics:
+    export:
+      influx:
+        enabled: false #influx metrics not pushing
