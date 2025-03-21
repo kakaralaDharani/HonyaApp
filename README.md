@@ -10,6 +10,7 @@ Application is developed using Java, Spring and React. Using Spring Cloud Micros
 ## Backend Services Available
 ```
 Api Gateway Service       : 8765
+Eureka Discovery Service  : 8761
 Account Service           : 4001
 Billing Service           : 5001
 Catalog Service           : 6001
