@@ -1,0 +1,786 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "v1",
+        "title": "Order Service REST Api's",
+        "contact": {
+            "name": "Dummy",
+            "url": "https://github.com/pravardhanmannem",
+            "email": "dummy@gmail.com"
+        },
+        "license": {
+            "name": "License of API",
+            "url": "API license URL"
+        }
+    },
+    "host": "localhost:7001",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "cart-controller",
+            "description": "Cart Controller"
+        },
+        {
+            "name": "cart-item-controller",
+            "description": "Cart Item Controller"
+        },
+        {
+            "name": "order-controller",
+            "description": "Order Controller"
+        }
+    ],
+    "paths": {
+        "/cart": {
+            "get": {
+                "tags": [
+                    "cart-controller"
+                ],
+                "summary": "getCart",
+                "operationId": "getCartUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "cart-controller"
+                ],
+                "summary": "createCart",
+                "operationId": "createCartUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CreateCartResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/cart/cartItem": {
+            "post": {
+                "tags": [
+                    "cart-item-controller"
+                ],
+                "summary": "addCartItem",
+                "operationId": "addCartItemUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cartItemRequest",
+                        "description": "cartItemRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CartItemRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "cart-item-controller"
+                ],
+                "summary": "removeAllCartItems",
+                "operationId": "removeAllCartItemsUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "cartId",
+                        "in": "query",
+                        "description": "cartId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/cart/cartItem/{cartItemId}": {
+            "delete": {
+                "tags": [
+                    "cart-item-controller"
+                ],
+                "summary": "removeCartItem",
+                "operationId": "removeCartItemUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "cartItemId",
+                        "in": "path",
+                        "description": "cartItemId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/order": {
+            "post": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "createOrder",
+                "operationId": "createOrderUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "createOrderRequest",
+                        "description": "createOrderRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateOrderRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CreateOrderResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/order/myorders": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "getMyOrders",
+                "operationId": "getMyOrdersUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CreateOrderResponse"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/order/{orderId}": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "getOrderById",
+                "operationId": "getOrderByIdUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "orderId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CreateOrderResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/orders": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "getAllOrders",
+                "operationId": "getAllOrdersUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CreateOrderResponse"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/previewOrder": {
+            "post": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "previewOrder",
+                "operationId": "previewOrderUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "previewOrderRequest",
+                        "description": "previewOrderRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PreviewOrderRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PreviewOrderResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "Card": {
+            "type": "object",
+            "properties": {
+                "cardBrand": {
+                    "type": "string"
+                },
+                "last4Digits": {
+                    "type": "string"
+                },
+                "paymentMethodId": {
+                    "type": "string"
+                }
+            },
+            "title": "Card"
+        },
+        "CartItemRequest": {
+            "type": "object",
+            "properties": {
+                "productId": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "CartItemRequest"
+        },
+        "CreateCartResponse": {
+            "type": "object",
+            "properties": {
+                "cartId": {
+                    "type": "string"
+                }
+            },
+            "title": "CreateCartResponse"
+        },
+        "CreateOrderRequest": {
+            "type": "object",
+            "properties": {
+                "billingAddressId": {
+                    "type": "string"
+                },
+                "paymentMethodId": {
+                    "type": "string"
+                },
+                "shippingAddressId": {
+                    "type": "string"
+                }
+            },
+            "title": "CreateOrderRequest"
+        },
+        "CreateOrderResponse": {
+            "type": "object",
+            "properties": {
+                "billingAddress": {
+                    "$ref": "#/definitions/OrderBillingAddress"
+                },
+                "card": {
+                    "$ref": "#/definitions/Card"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "delivered": {
+                    "type": "boolean"
+                },
+                "deliveredDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "itemsTotalPrice": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "orderId": {
+                    "type": "string"
+                },
+                "orderItems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OrderItem"
+                    }
+                },
+                "paid": {
+                    "type": "boolean"
+                },
+                "paymentDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "paymentReceiptUrl": {
+                    "type": "string"
+                },
+                "shippingAddress": {
+                    "$ref": "#/definitions/OrderShippingAddress"
+                },
+                "shippingPrice": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "taxPrice": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "totalPrice": {
+                    "type": "number",
+                    "format": "double"
+                }
+            },
+            "title": "CreateOrderResponse"
+        },
+        "GetAddressResponse": {
+            "type": "object",
+            "properties": {
+                "addressId": {
+                    "type": "string"
+                },
+                "addressLine1": {
+                    "type": "string"
+                },
+                "addressLine2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            },
+            "title": "GetAddressResponse"
+        },
+        "OrderBillingAddress": {
+            "type": "object",
+            "properties": {
+                "addressLine1": {
+                    "type": "string"
+                },
+                "addressLine2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "orderBillingId": {
+                    "type": "string"
+                },
+                "orderId": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "title": "OrderBillingAddress"
+        },
+        "OrderItem": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "orderExtendedPrice": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "orderItemId": {
+                    "type": "string"
+                },
+                "orderItemPrice": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "productId": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "title": "OrderItem"
+        },
+        "OrderShippingAddress": {
+            "type": "object",
+            "properties": {
+                "addressLine1": {
+                    "type": "string"
+                },
+                "addressLine2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "orderId": {
+                    "type": "string"
+                },
+                "orderShippingId": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "title": "OrderShippingAddress"
+        },
+        "PreviewOrderRequest": {
+            "type": "object",
+            "properties": {
+                "billingAddressId": {
+                    "type": "string"
+                },
+                "paymentMethodId": {
+                    "type": "string"
+                },
+                "shippingAddressId": {
+                    "type": "string"
+                }
+            },
+            "title": "PreviewOrderRequest"
+        },
+        "PreviewOrderResponse": {
+            "type": "object",
+            "properties": {
+                "billingAddress": {
+                    "$ref": "#/definitions/GetAddressResponse"
+                },
+                "card": {
+                    "$ref": "#/definitions/Card"
+                },
+                "itemsTotalPrice": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "orderItems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OrderItem"
+                    }
+                },
+                "shippingAddress": {
+                    "$ref": "#/definitions/GetAddressResponse"
+                },
+                "shippingPrice": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "taxPrice": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "totalPrice": {
+                    "type": "number",
+                    "format": "double"
+                }
+            },
+            "title": "PreviewOrderResponse"
+        }
+    }
+}

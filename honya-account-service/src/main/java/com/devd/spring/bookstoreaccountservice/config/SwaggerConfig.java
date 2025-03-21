@@ -35,7 +35,7 @@ public class SwaggerConfig {
         "",
         "v1",
         "",
-        new Contact("Devaraj Reddy", "https://github.com/devdcores", "devarajreddy.gdr@gmail.com"),
+        new Contact("Dummy", "https://github.com/pravardhanmannem", "dummy@gmail.com"),
         "License of API", "API license URL", Collections.emptyList());
   }
 

@@ -1,0 +1,949 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "v1",
+        "title": "Catalog Service REST Api's",
+        "contact": {
+            "name": "Dummy",
+            "url": "https://github.com/pravardhanmannem",
+            "email": "dummy@gmail.com"
+        },
+        "license": {
+            "name": "License of API",
+            "url": "API license URL"
+        }
+    },
+    "host": "localhost:6001",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "image-upload-controller",
+            "description": "Image Upload Controller"
+        },
+        {
+            "name": "product-category-controller",
+            "description": "Product Category Controller"
+        },
+        {
+            "name": "product-controller",
+            "description": "Product Controller"
+        },
+        {
+            "name": "review-controller",
+            "description": "Review Controller"
+        }
+    ],
+    "paths": {
+        "/image/upload": {
+            "post": {
+                "tags": [
+                    "image-upload-controller"
+                ],
+                "summary": "uploadImage",
+                "operationId": "uploadImageUsingPOST",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "imageFile",
+                        "description": "imageFile",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "binary"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/image/{imageId}": {
+            "get": {
+                "tags": [
+                    "image-upload-controller"
+                ],
+                "summary": "getImage",
+                "operationId": "getImageUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "imageId",
+                        "in": "path",
+                        "description": "imageId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/product": {
+            "post": {
+                "tags": [
+                    "product-controller"
+                ],
+                "summary": "createProduct",
+                "operationId": "createProductUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "createProductRequest",
+                        "description": "createProductRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateProductRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "product-controller"
+                ],
+                "summary": "updateProduct",
+                "operationId": "updateProductUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "updateProductRequest",
+                        "description": "updateProductRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateProductRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/product/{productId}": {
+            "get": {
+                "tags": [
+                    "product-controller"
+                ],
+                "summary": "getProduct",
+                "operationId": "getProductUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "productId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ProductResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "product-controller"
+                ],
+                "summary": "deleteProductCategory",
+                "operationId": "deleteProductCategoryUsingDELETE_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "productId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/productCategories": {
+            "get": {
+                "tags": [
+                    "product-category-controller"
+                ],
+                "summary": "getAllProductCategories",
+                "operationId": "getAllProductCategoriesUsingGET",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "size",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "sort",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/productCategory": {
+            "post": {
+                "tags": [
+                    "product-category-controller"
+                ],
+                "summary": "createProductCategory",
+                "operationId": "createProductCategoryUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "createProductCategoryRequest",
+                        "description": "createProductCategoryRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateProductCategoryRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "product-category-controller"
+                ],
+                "summary": "updateProductCategory",
+                "operationId": "updateProductCategoryUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "updateProductCategoryRequest",
+                        "description": "updateProductCategoryRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateProductCategoryRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/productCategory/{productCategoryId}": {
+            "get": {
+                "tags": [
+                    "product-category-controller"
+                ],
+                "summary": "getProductCategory",
+                "operationId": "getProductCategoryUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "productCategoryId",
+                        "in": "path",
+                        "description": "productCategoryId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ProductCategory"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "product-category-controller"
+                ],
+                "summary": "deleteProductCategory",
+                "operationId": "deleteProductCategoryUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "productCategoryId",
+                        "in": "path",
+                        "description": "productCategoryId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/products": {
+            "get": {
+                "tags": [
+                    "product-controller"
+                ],
+                "summary": "getAllProducts",
+                "operationId": "getAllProductsUsingGET",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "size",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "sort",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/review": {
+            "get": {
+                "tags": [
+                    "review-controller"
+                ],
+                "summary": "getAllReviewsForProduct",
+                "operationId": "getAllReviewsForProductUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "productId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "review-controller"
+                ],
+                "summary": "createOrUpdateReview",
+                "operationId": "createOrUpdateReviewUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "createOrUpdateReviewRequest",
+                        "description": "createOrUpdateReviewRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateOrUpdateReviewRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "CreateOrUpdateReviewRequest": {
+            "type": "object",
+            "properties": {
+                "productId": {
+                    "type": "string"
+                },
+                "ratingValue": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "reviewMessage": {
+                    "type": "string"
+                }
+            },
+            "title": "CreateOrUpdateReviewRequest"
+        },
+        "CreateProductCategoryRequest": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "productCategoryName": {
+                    "type": "string"
+                }
+            },
+            "title": "CreateProductCategoryRequest"
+        },
+        "CreateProductRequest": {
+            "type": "object",
+            "properties": {
+                "availableItemCount": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "imageId": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "productCategoryId": {
+                    "type": "string"
+                },
+                "productName": {
+                    "type": "string"
+                }
+            },
+            "title": "CreateProductRequest"
+        },
+        "Product": {
+            "type": "object",
+            "properties": {
+                "availableItemCount": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "imageId": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "productCategory": {
+                    "type": "string"
+                },
+                "productId": {
+                    "type": "string"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "title": "Product"
+        },
+        "ProductCategory": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "productCategoryId": {
+                    "type": "string"
+                },
+                "productCategoryName": {
+                    "type": "string"
+                },
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Product"
+                    }
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "title": "ProductCategory"
+        },
+        "ProductResponse": {
+            "type": "object",
+            "properties": {
+                "availableItemCount": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "averageRating": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "imageId": {
+                    "type": "string"
+                },
+                "noOfRatings": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "productCategory": {
+                    "type": "string"
+                },
+                "productId": {
+                    "type": "string"
+                },
+                "productName": {
+                    "type": "string"
+                }
+            },
+            "title": "ProductResponse"
+        },
+        "UpdateProductCategoryRequest": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "productCategoryId": {
+                    "type": "string"
+                },
+                "productCategoryName": {
+                    "type": "string"
+                }
+            },
+            "title": "UpdateProductCategoryRequest"
+        },
+        "UpdateProductRequest": {
+            "type": "object",
+            "properties": {
+                "availableItemCount": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "imageId": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "productCategoryId": {
+                    "type": "string"
+                },
+                "productId": {
+                    "type": "string"
+                },
+                "productName": {
+                    "type": "string"
+                }
+            },
+            "title": "UpdateProductRequest"
+        }
+    }
+}

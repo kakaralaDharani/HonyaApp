@@ -1,0 +1,354 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "v1",
+        "title": "Billing Service REST Api's",
+        "contact": {
+            "name": "Dummy",
+            "url": "https://github.com/pravardhanmannem",
+            "email": "dummy@gmail.com"
+        },
+        "license": {
+            "name": "License of API",
+            "url": "API license URL"
+        }
+    },
+    "host": "localhost:5001",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "address-controller",
+            "description": "Address Controller"
+        }
+    ],
+    "paths": {
+        "/address": {
+            "get": {
+                "tags": [
+                    "address-controller"
+                ],
+                "summary": "getAddress",
+                "operationId": "getAddressUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/GetAddressResponse"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "address-controller"
+                ],
+                "summary": "createAddress",
+                "operationId": "createAddressUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "createAddressRequest",
+                        "description": "createAddressRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateAddressRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "address-controller"
+                ],
+                "summary": "updateAddress",
+                "operationId": "updateAddressUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "updateAddressRequest",
+                        "description": "updateAddressRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateAddressRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/address/{addressId}": {
+            "get": {
+                "tags": [
+                    "address-controller"
+                ],
+                "summary": "getAddressById",
+                "operationId": "getAddressByIdUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "addressId",
+                        "in": "path",
+                        "description": "addressId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/GetAddressResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "address-controller"
+                ],
+                "summary": "deleteAddressById",
+                "operationId": "deleteAddressByIdUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "addressId",
+                        "in": "path",
+                        "description": "addressId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "CreateAddressRequest": {
+            "type": "object",
+            "properties": {
+                "addressLine1": {
+                    "type": "string"
+                },
+                "addressLine2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                }
+            },
+            "title": "CreateAddressRequest"
+        },
+        "GetAddressResponse": {
+            "type": "object",
+            "properties": {
+                "addressId": {
+                    "type": "string"
+                },
+                "addressLine1": {
+                    "type": "string"
+                },
+                "addressLine2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            },
+            "title": "GetAddressResponse"
+        },
+        "UpdateAddressRequest": {
+            "type": "object",
+            "properties": {
+                "addressId": {
+                    "type": "string"
+                },
+                "addressLine1": {
+                    "type": "string"
+                },
+                "addressLine2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                }
+            },
+            "title": "UpdateAddressRequest"
+        }
+    }
+}

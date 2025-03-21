@@ -1,0 +1,305 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "v1",
+        "title": "Billing Service REST Api's",
+        "contact": {
+            "name": "Dummy",
+            "url": "https://github.com/pravardhanmannem",
+            "email": "dummy@gmail.com"
+        },
+        "license": {
+            "name": "License of API",
+            "url": "API license URL"
+        }
+    },
+    "host": "localhost:8001",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "payment-method-controller",
+            "description": "Payment Method Controller"
+        },
+        {
+            "name": "payments-controller",
+            "description": "Payments Controller"
+        }
+    ],
+    "paths": {
+        "/pay": {
+            "post": {
+                "tags": [
+                    "payments-controller"
+                ],
+                "summary": "doPayment",
+                "operationId": "doPaymentUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "createPaymentRequest",
+                        "description": "createPaymentRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreatePaymentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/paymentMethod": {
+            "get": {
+                "tags": [
+                    "payment-method-controller"
+                ],
+                "summary": "getAllMyPaymentMethods",
+                "operationId": "getAllMyPaymentMethodsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "payment-method-controller"
+                ],
+                "summary": "createPaymentMethod",
+                "operationId": "createPaymentMethodUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "createPaymentMethodRequest",
+                        "description": "createPaymentMethodRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreatePaymentMethodRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/paymentMethod/{paymentMethodId}": {
+            "get": {
+                "tags": [
+                    "payment-method-controller"
+                ],
+                "summary": "getMyPaymentMethodById",
+                "operationId": "getMyPaymentMethodByIdUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "paymentMethodId",
+                        "in": "path",
+                        "description": "paymentMethodId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/GetPaymentMethodResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "Card": {
+            "type": "object",
+            "properties": {
+                "cardNumber": {
+                    "type": "string"
+                },
+                "cvv": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "expirationMonth": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "expirationYear": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "last4Digits": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                }
+            },
+            "title": "Card"
+        },
+        "CreatePaymentMethodRequest": {
+            "type": "object",
+            "properties": {
+                "card": {
+                    "$ref": "#/definitions/Card"
+                }
+            },
+            "title": "CreatePaymentMethodRequest"
+        },
+        "CreatePaymentRequest": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "paymentMethodId": {
+                    "type": "string"
+                }
+            },
+            "title": "CreatePaymentRequest"
+        },
+        "GetPaymentMethodResponse": {
+            "type": "object",
+            "properties": {
+                "cardCountry": {
+                    "type": "string"
+                },
+                "cardExpirationMonth": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "cardExpirationYear": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "cardLast4Digits": {
+                    "type": "string"
+                },
+                "cardType": {
+                    "type": "string"
+                },
+                "paymentMethodId": {
+                    "type": "string"
+                }
+            },
+            "title": "GetPaymentMethodResponse"
+        }
+    }
+}
