@@ -21,6 +21,12 @@ Payment Service           : 8001
 ```
 /api-spec
 ```
+## Open Source Libs used and respective versions verified with 
+```
+Java Version: openjdk 17
+Node Version : v10.24.1
+npm Version: 6.14.12
+```
 ## Run this project front end in Local Machine
 
 Navigate to `honya-frontend-react-app` folder
