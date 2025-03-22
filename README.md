@@ -24,7 +24,7 @@ Payment Service           : 8001
 ```
 ## Open Source Libs used and respective versions verified with 
 ```
-Java Version: openjdk 17
+Java Version: openjdk 11
 Node Version : v10.24.1
 npm Version: 6.14.12
 ```
